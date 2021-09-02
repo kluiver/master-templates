@@ -1,0 +1,20 @@
+pool:
+  name: DOTAzure-Ubuntu-20.04
+
+stages:
+  - stage: build
+    displayName: Build
+    jobs:
+      - job: Azure_build
+        steps:
+          - checkout: self
+            persistCredentials: true
+            clean: true
+
+          - bash: |
+              echo 'Azure-java-example'
+              echo 'Example job that builds a java application.'
+            displayName: 'Build description'
+          - bash: |
+              mvn clean deploy
+            displayName: 'Clean, deploy, and build .jar file'
